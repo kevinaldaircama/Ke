@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso Denegado - Factura Pendiente</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #7b2cbf, #4b0082);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .factura {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #7b2cbf;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 36px;
+      font-weight: bold;
+      margin: 0 auto 20px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      color: #b10000;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .detalle {
+      text-align: left;
+      margin: 20px 0;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .detalle div {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .detalle div span:first-child {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .pagar-btn {
+      background: #7b2cbf;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .pagar-btn:hover {
+      background: #5a189a;
+    }
+
+    .contacto {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 25px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: rgba(255, 0, 0, 0.08);
+      pointer-events: none;
+    }
+
+    @media (max-width: 480px) {
+      .factura {
+        padding: 20px;
+      }
+      .logo {
+        width: 65px;
+        height: 65px;
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="factura">
+    <div class="overlay"></div>
+    <div class="logo">💳</div>
+    <h1>Acceso Denegado</h1>
+    <p>Tu cuenta ha sido suspendida temporalmente por falta de pago.</p>
+
+    <div class="detalle">
+      <div><span>Factura Nº:</span> <span id="codigo"></span></div>
+      <div><span>Fecha de emisión:</span> <span id="fecha"></span></div>
+      <div><span>Monto pendiente:</span> <span>S/50.00</span></div>
+      <div><span>Estado:</span> <span style="color:red; font-weight:bold;">No pagado</span></div>
+    </div>
+
+    <button class="pagar-btn" onclick="window.location.href='https://tupasarela.com/pagar'">💰 Pagar ahora</button>
+    
+
+    <footer>
+      © <span id="anio"></span> Kevin tech tutorials — Todos los derechos reservados.
+    </footer>
+  </div>
+
+  <script>
+    // Generar código aleatorio de factura
+    const codigo = Math.floor(100000 + Math.random() * 900000);
+    document.getElementById("codigo").textContent = "FAC-" + codigo;
+
+    // Fecha actual
+    const hoy = new Date();
+    const fechaFormateada = hoy.toLocaleDateString('es-PE', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    document.getElementById("fecha").textContent = fechaFormateada;
+
+    // Año actual
+    document.getElementById("anio").textContent = hoy.getFullYear();
+  </script>
+</body>
+</html>
